@@ -504,7 +504,7 @@ public class Clientes extends javax.swing.JPanel {
         prov.setTelefono(TXT_Tel.getText());
         prov.setDireccion((String) CBOX_Dir.getSelectedItem()+TXT_Dir1.getText()+" # "+TXT_Dir2.getText()+" - "+TXT_Dir3.getText());
         prov.setNit(TXT_NITemp.getText());
-        String resp = ClienteDAO.actualizarProveedores(prov);
+        ClienteDAO.actualizarProveedores(prov);
   
         TXT_Nom.setText("");
         TXT_Ape1.setText("");
@@ -525,8 +525,9 @@ public class Clientes extends javax.swing.JPanel {
         TXT_ciudad.setText("");
         TXT_Tel.setText("");
         TXT_NITemp.setText("");
+        
     }//GEN-LAST:event_eliminarClienteActionPerformed
-
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BuscarCliente;
