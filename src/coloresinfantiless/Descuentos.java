@@ -11,13 +11,13 @@ import java.sql.PreparedStatement;
 public class Descuentos extends javax.swing.JPanel {
 
    Validation v;
-   conectar c; 
+   ConectaBD c; 
    Connection co;
     public Descuentos() {
         initComponents();
         v = new Validation();
-        c = new conectar();
-        co  = c.conexion();
+        c = new ConectaBD();
+        co  = c.getConnection();
     }
 
     

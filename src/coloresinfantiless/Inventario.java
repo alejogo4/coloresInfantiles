@@ -16,7 +16,7 @@ public class Inventario extends javax.swing.JPanel {
 
    DefaultTableModel Model;
    Validation v;
-   conectar c; 
+   ConectaBD c; 
    Connection co;
     public Inventario() {
         initComponents();
@@ -29,8 +29,8 @@ public class Inventario extends javax.swing.JPanel {
         this.TBL_Productos.setModel(Model);
         v = new Validation();
         
-        c = new conectar();
-        co  = c.conexion();
+        c = new ConectaBD();
+        co  = c.getConnection();
     }
 
     /**
