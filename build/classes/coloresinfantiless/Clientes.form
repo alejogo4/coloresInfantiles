@@ -177,10 +177,12 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="BuscarCliente" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="BuscarCliente1" min="-2" max="-2" attributes="0"/>
+                              <Component id="actualizarCliente" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="eliminarCliente" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="292" max="32767" attributes="0"/>
+                      <EmptySpace pref="265" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -240,7 +242,8 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btn_add_cliente" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="BuscarCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="BuscarCliente1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="actualizarCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="eliminarCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="54" max="32767" attributes="0"/>
                       <Component id="jButton2" min="-2" max="-2" attributes="0"/>
@@ -390,12 +393,20 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BuscarClienteActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="BuscarCliente1">
+            <Component class="javax.swing.JButton" name="actualizarCliente">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Actualizar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BuscarCliente1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="actualizarClienteActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="eliminarCliente">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Eliminar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarClienteActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

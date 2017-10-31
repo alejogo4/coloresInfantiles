@@ -19,6 +19,32 @@ import java.util.ArrayList;
  */
 public class ClienteDAO {
     
+    public static String eliminarProveedores(String clave) {
+        String result = null;
+        ConectaBD c = new ConectaBD();
+        Connection cn  = c.getConnection();
+        PreparedStatement pst = null;
+        String sql = "DELETE FROM clientes WHERE IDproducto = ?";
+        try {
+            pst = cn.prepareStatement(sql);
+            pst.setString(1, clave);
+            pst.executeUpdate();
+            result = "Proveedor eliminado con exito";
+        } catch (SQLException e) {
+            result = "Error en la consulta: " + e.getMessage();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                    pst.close();
+                }
+            } catch (Exception e) {
+                result = "Error: " + e;
+            }
+        }
+        return result;
+    }
+    
     public static String actualizarProveedores(Clientes prov) {
         String result = null, last = null;
         ConectaBD c = new ConectaBD();

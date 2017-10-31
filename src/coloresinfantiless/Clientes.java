@@ -65,7 +65,8 @@ public class Clientes extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         TXT_NITemp = new javax.swing.JTextField();
         BuscarCliente = new javax.swing.JButton();
-        BuscarCliente1 = new javax.swing.JButton();
+        actualizarCliente = new javax.swing.JButton();
+        eliminarCliente = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -217,10 +218,17 @@ public class Clientes extends javax.swing.JPanel {
             }
         });
 
-        BuscarCliente1.setText("Actualizar");
-        BuscarCliente1.addActionListener(new java.awt.event.ActionListener() {
+        actualizarCliente.setText("Actualizar");
+        actualizarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BuscarCliente1ActionPerformed(evt);
+                actualizarClienteActionPerformed(evt);
+            }
+        });
+
+        eliminarCliente.setText("Eliminar");
+        eliminarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarClienteActionPerformed(evt);
             }
         });
 
@@ -274,8 +282,10 @@ public class Clientes extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(BuscarCliente)
                         .addGap(18, 18, 18)
-                        .addComponent(BuscarCliente1)))
-                .addContainerGap(292, Short.MAX_VALUE))
+                        .addComponent(actualizarCliente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(eliminarCliente)))
+                .addContainerGap(265, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton2))
@@ -324,7 +334,8 @@ public class Clientes extends javax.swing.JPanel {
                 .addGroup(PanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_add_cliente)
                     .addComponent(BuscarCliente)
-                    .addComponent(BuscarCliente1))
+                    .addComponent(actualizarCliente)
+                    .addComponent(eliminarCliente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(jButton2))
         );
@@ -482,7 +493,7 @@ public class Clientes extends javax.swing.JPanel {
         TXT_NITemp.setText(prov.getNit());
     }//GEN-LAST:event_BuscarClienteActionPerformed
 
-    private void BuscarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarCliente1ActionPerformed
+    private void actualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarClienteActionPerformed
         // TODO add your handling code here:                                                    
         classVO.Clientes prov = new classVO.Clientes();
         prov.setId(Integer.parseInt(TxtF_ID.getText()));
@@ -503,12 +514,22 @@ public class Clientes extends javax.swing.JPanel {
         TXT_NITemp.setText("");
         //cargarProveedores(0);
     
-    }//GEN-LAST:event_BuscarCliente1ActionPerformed
+    }//GEN-LAST:event_actualizarClienteActionPerformed
+
+    private void eliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarClienteActionPerformed
+        // TODO add your handling code here:
+        String resp = ClienteDAO.eliminarProveedores(TxtF_ID.getText());
+        TXT_Nom.setText("");
+        TXT_Ape1.setText("");
+        txt_email.setText("");
+        TXT_ciudad.setText("");
+        TXT_Tel.setText("");
+        TXT_NITemp.setText("");
+    }//GEN-LAST:event_eliminarClienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BuscarCliente;
-    private javax.swing.JButton BuscarCliente1;
     private javax.swing.JComboBox<String> CBOX_Dir;
     private javax.swing.JPanel Panel;
     private javax.swing.JTextField TXT_Ape1;
@@ -521,7 +542,9 @@ public class Clientes extends javax.swing.JPanel {
     private javax.swing.JTextField TXT_ciudad;
     private javax.swing.JTextField TxtF_ID;
     private javax.swing.JLabel Txt_ID;
+    private javax.swing.JButton actualizarCliente;
     private javax.swing.JButton btn_add_cliente;
+    private javax.swing.JButton eliminarCliente;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
