@@ -20,14 +20,15 @@ import java.util.ArrayList;
 public class ClienteDAO {
     
     public static String eliminarProveedores(String clave) {
+        System.out.println(clave);
         String result = null;
         ConectaBD c = new ConectaBD();
         Connection cn  = c.getConnection();
         PreparedStatement pst = null;
-        String sql = "DELETE FROM clientes WHERE IDproducto = ?";
+        String sql = "DELETE FROM clientes WHERE idclient=?";
         try {
             pst = cn.prepareStatement(sql);
-            pst.setString(1, clave);
+            pst.setInt(1, Integer.parseInt(clave));
             pst.executeUpdate();
             result = "Proveedor eliminado con exito";
         } catch (SQLException e) {
@@ -50,8 +51,9 @@ public class ClienteDAO {
         ConectaBD c = new ConectaBD();
         Connection cn  = c.getConnection();
         PreparedStatement pst = null;
-        String sql = "UPDATE clientes SET nombre=?,apellido=?,nit=?,celular=?,direccion=?,ciudad=?,email=? WHERE idclient=?";
+        String sql = "UPDATE clientes SET nombre=?,apellido=?,nit=?,celular=?,direccion=?,ciudad=?,email=? WHERE idclient=? ";
         try {
+            
             System.out.println(sql);
             pst = cn.prepareStatement(sql);
             pst.setString(1, prov.getNombre());
@@ -61,7 +63,7 @@ public class ClienteDAO {
             pst.setString(5, prov.getDireccion());
             pst.setString(6, prov.getCiudad());
             pst.setString(7, prov.getEmail());
-            
+            pst.setInt(8, prov.getId());
             pst.execute();
 
             //result = "Proveedor actualizado con exito, ID:" + prov.getId_proveedor();

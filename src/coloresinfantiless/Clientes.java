@@ -518,7 +518,7 @@ public class Clientes extends javax.swing.JPanel {
 
     private void eliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarClienteActionPerformed
         // TODO add your handling code here:
-        String resp = ClienteDAO.eliminarProveedores(TxtF_ID.getText());
+        ClienteDAO.eliminarProveedores(TxtF_ID.getText());
         TXT_Nom.setText("");
         TXT_Ape1.setText("");
         txt_email.setText("");

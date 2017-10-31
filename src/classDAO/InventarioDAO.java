@@ -16,6 +16,34 @@ import java.util.ArrayList;
 
     
 public class InventarioDAO {
+    
+    public static String eliminarProveedores(String clave) {
+        System.out.println(clave);
+        String result = null;
+        ConectaBD c = new ConectaBD();
+        Connection cn  = c.getConnection();
+        PreparedStatement pst = null;
+        String sql = "DELETE FROM productos WHERE IDproducto=?";
+        try {
+            pst = cn.prepareStatement(sql);
+            pst.setInt(1, Integer.parseInt(clave));
+            pst.executeUpdate();
+            result = "Proveedor eliminado con exito";
+        } catch (SQLException e) {
+            result = "Error en la consulta: " + e.getMessage();
+        } finally {
+            try {
+                if (cn != null) {
+                    cn.close();
+                    pst.close();
+                }
+            } catch (Exception e) {
+                result = "Error: " + e;
+            }
+        }
+        return result;
+    }
+    
     public static String actualizarProveedores(Inventario prod) {
         String result = null, last = null;
         ConectaBD c = new ConectaBD();
@@ -26,12 +54,12 @@ public class InventarioDAO {
             System.out.println(sql);
             pst = cn.prepareStatement(sql);
             pst.setString(1, prod.getNombre());
-            pst.setString(2, prod.getUnidades().toString());
+            pst.setInt(2, prod.getUnidades());
             pst.setString(3, prod.getDescripcion());
-            pst.setString(4, prod.getPrecio().toString());
-            pst.setString(5, prod.getIva().toString());
+            pst.setInt(4, prod.getPrecio());
+            pst.setInt(5, prod.getIva());
             pst.setString(6, prod.getActivo());
-           
+            pst.setInt(7, prod.getIdproducto());
             
             pst.execute();
 

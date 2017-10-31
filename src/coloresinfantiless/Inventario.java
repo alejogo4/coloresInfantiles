@@ -71,6 +71,7 @@ public class Inventario extends javax.swing.JPanel {
         cmb_activo = new javax.swing.JComboBox<>();
         BTN_Buscarproducto = new javax.swing.JButton();
         BtnActualizar = new javax.swing.JButton();
+        eliminarProducto = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -240,6 +241,13 @@ public class Inventario extends javax.swing.JPanel {
             }
         });
 
+        eliminarProducto.setText("Eliminar");
+        eliminarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarProductoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -257,7 +265,9 @@ public class Inventario extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(BTN_Buscarproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BtnActualizar)))
+                                .addComponent(BtnActualizar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(eliminarProducto)))
                         .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,7 +322,8 @@ public class Inventario extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BTN_Add)
                     .addComponent(BTN_Buscarproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnActualizar))
+                    .addComponent(BtnActualizar)
+                    .addComponent(eliminarProducto))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -457,6 +468,17 @@ public class Inventario extends javax.swing.JPanel {
         
     }//GEN-LAST:event_BtnActualizarActionPerformed
 
+    private void eliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarProductoActionPerformed
+        // TODO add your handling code here:
+        InventarioDAO.eliminarProveedores(TXT_IDpr.getText());
+        TXT_IDpr.setText("");
+        TXT_Nompr.setText("");
+        TXT_Unpr.setText("");
+        TXT_Prepr.setText("");
+        TXT_IVApr.setText("");
+        TXT_DESCpr.setText("");
+    }//GEN-LAST:event_eliminarProductoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTN_Add;
@@ -471,6 +493,7 @@ public class Inventario extends javax.swing.JPanel {
     private javax.swing.JTextField TXT_Prepr;
     private javax.swing.JTextField TXT_Unpr;
     private javax.swing.JComboBox<String> cmb_activo;
+    private javax.swing.JButton eliminarProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
