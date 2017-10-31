@@ -5,6 +5,7 @@
  */
 package coloresinfantiless;
 import Clase.*;
+import classDAO.InventarioDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.table.DefaultTableModel;
@@ -45,8 +46,9 @@ public class Inventario extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablainventario = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        BTN_Buscar = new javax.swing.JButton();
         TXT_NIT = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -67,6 +69,8 @@ public class Inventario extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         BTN_Add = new javax.swing.JButton();
         cmb_activo = new javax.swing.JComboBox<>();
+        BTN_Buscarproducto = new javax.swing.JButton();
+        BtnActualizar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -74,21 +78,42 @@ public class Inventario extends javax.swing.JPanel {
         jLabel14.setForeground(new java.awt.Color(153, 153, 153));
         jLabel14.setText("Nuestros Productos");
 
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
+            }
+        });
+
+        tablainventario.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tablainventario);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 487, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 349, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(198, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("LISTA", jPanel4);
-
-        BTN_Buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscando.png"))); // NOI18N
-        BTN_Buscar.setText("BUSCAR");
 
         TXT_NIT.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -123,8 +148,7 @@ public class Inventario extends javax.swing.JPanel {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(TXT_NIT)
-                        .addGap(18, 18, 18)
-                        .addComponent(BTN_Buscar)))
+                        .addGap(119, 119, 119)))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -132,13 +156,11 @@ public class Inventario extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(BTN_Buscar)
-                        .addComponent(TXT_NIT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(TXT_NIT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addContainerGap(199, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("BUSCAR", jPanel1);
@@ -198,6 +220,26 @@ public class Inventario extends javax.swing.JPanel {
 
         cmb_activo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-- Seleccionar --", "TRUE", "FALSE", " " }));
 
+        BTN_Buscarproducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/buscando.png"))); // NOI18N
+        BTN_Buscarproducto.setText("BUSCAR");
+        BTN_Buscarproducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BTN_BuscarproductoMouseClicked(evt);
+            }
+        });
+        BTN_Buscarproducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BTN_BuscarproductoActionPerformed(evt);
+            }
+        });
+
+        BtnActualizar.setText("Actualizar");
+        BtnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnActualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -208,13 +250,15 @@ public class Inventario extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TXT_DESCpr, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(BTN_Add)
-                                .addGap(219, 219, 219))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(TXT_DESCpr)
-                                .addGap(100, 100, 100))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BTN_Buscarproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnActualizar)))
+                        .addContainerGap())
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -264,8 +308,12 @@ public class Inventario extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(TXT_DESCpr, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
-                .addComponent(BTN_Add))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BTN_Add)
+                    .addComponent(BTN_Buscarproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnActualizar))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("INSERTAR", jPanel2);
@@ -294,62 +342,126 @@ public class Inventario extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TXT_NITKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXT_NITKeyTyped
-    v.validar1(evt.getKeyChar(), evt, TXT_NIT.getText().length());
-    }//GEN-LAST:event_TXT_NITKeyTyped
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("IDproducto");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Unidades");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Precio");
+        modelo.addColumn("Iva");
+        modelo.addColumn("Activo");
 
-    private void TXT_IDprKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXT_IDprKeyTyped
-     v.validar1(evt.getKeyChar(), evt, TXT_IDpr.getText().length());
-    }//GEN-LAST:event_TXT_IDprKeyTyped
+        tablainventario.setModel(modelo);
+        Object[] arrinventario = new Object[7];
+        for(classVO.Inventario inventario: InventarioDAO.getListProductos()){
+            arrinventario[0] = inventario.getIdproducto();
+            arrinventario[1] = inventario.getNombre();
+            arrinventario[2] = inventario.getUnidades();
+            arrinventario[3] = inventario.getDescripcion();
+            arrinventario[4] = inventario.getPrecio();
+            arrinventario[5] = inventario.getIva();
+            arrinventario[6] = inventario.getActivo();
+
+            modelo.addRow(arrinventario);
+        }
+        tablainventario.setModel(modelo);
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void BTN_BuscarproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_BuscarproductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BTN_BuscarproductoActionPerformed
+
+    private void BTN_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_AddActionPerformed
+        // TODO add your handling code here:
+        try {
+            PreparedStatement pst = co.prepareStatement("INSERT INTO productos (IDproducto,nombre,unidades,descripcion,precio,iva,activo) VALUES (?,?,?,?,?,?,?)");
+            pst.setString(1, TXT_IDpr.getText());
+            pst.setString(2, TXT_Nompr.getText());
+            pst.setString(3, TXT_Unpr.getText());
+            pst.setString(4, TXT_DESCpr.getText());
+            pst.setString(5, TXT_Prepr.getText());
+            pst.setString(6, TXT_IVApr.getText());
+            pst.setString(7, (String) cmb_activo.getSelectedItem());
+
+            pst.executeUpdate();
+
+            TXT_IDpr.setText("");
+            TXT_Nompr.setText("");
+            TXT_Unpr.setText("");
+            TXT_DESCpr.setText("");
+            TXT_Prepr.setText("");
+            TXT_IVApr.setText("");
+
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+    }//GEN-LAST:event_BTN_AddActionPerformed
+
+    private void TXT_IVAprKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXT_IVAprKeyTyped
+        v.Onlynumber(evt.getKeyChar(), evt);
+    }//GEN-LAST:event_TXT_IVAprKeyTyped
+
+    private void TXT_PreprKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXT_PreprKeyTyped
+        v.Onlynumber(evt.getKeyChar(), evt);
+    }//GEN-LAST:event_TXT_PreprKeyTyped
+
+    private void TXT_UnprKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXT_UnprKeyTyped
+        v.Onlynumber(evt.getKeyChar(), evt);
+    }//GEN-LAST:event_TXT_UnprKeyTyped
 
     private void TXT_NomprKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXT_NomprKeyTyped
         v.Onlytext(evt.getKeyChar(), evt);
     }//GEN-LAST:event_TXT_NomprKeyTyped
 
-    private void TXT_UnprKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXT_UnprKeyTyped
-       v.Onlynumber(evt.getKeyChar(), evt);
-    }//GEN-LAST:event_TXT_UnprKeyTyped
+    private void TXT_IDprKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXT_IDprKeyTyped
+        v.validar1(evt.getKeyChar(), evt, TXT_IDpr.getText().length());
+    }//GEN-LAST:event_TXT_IDprKeyTyped
 
-    private void TXT_PreprKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXT_PreprKeyTyped
-         v.Onlynumber(evt.getKeyChar(), evt);
-    }//GEN-LAST:event_TXT_PreprKeyTyped
+    private void TXT_NITKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXT_NITKeyTyped
+        v.validar1(evt.getKeyChar(), evt, TXT_NIT.getText().length());
+    }//GEN-LAST:event_TXT_NITKeyTyped
 
-    private void TXT_IVAprKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TXT_IVAprKeyTyped
-         v.Onlynumber(evt.getKeyChar(), evt);
-    }//GEN-LAST:event_TXT_IVAprKeyTyped
+    private void BTN_BuscarproductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BTN_BuscarproductoMouseClicked
+     classVO.Inventario prod = InventarioDAO.buscarProductos(TXT_IDpr.getText());
+     
+        TXT_IDpr.setText(prod.getIdproducto()+"");
+        TXT_Nompr.setText(prod.getNombre());
+        TXT_Unpr.setText(prod.getUnidades().toString());
+        TXT_Prepr.setText(prod.getPrecio().toString());
+        TXT_IVApr.setText(prod.getIva().toString());
+        TXT_DESCpr.setText(prod.getDescripcion());
+       
+    }//GEN-LAST:event_BTN_BuscarproductoMouseClicked
 
-    private void BTN_AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTN_AddActionPerformed
+    private void BtnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnActualizarActionPerformed
         // TODO add your handling code here:
-        try {
-        PreparedStatement pst = co.prepareStatement("INSERT INTO productos (IDproducto,nombre,unidades,descripcion,precio,iva,activo) VALUES (?,?,?,?,?,?,?)");
-        pst.setString(1, TXT_IDpr.getText());
-        pst.setString(2, TXT_Nompr.getText());
-        pst.setString(3, TXT_Unpr.getText());
-        pst.setString(4, TXT_DESCpr.getText());
-        pst.setString(5, TXT_Prepr.getText());
-        pst.setString(6, TXT_IVApr.getText());
-        pst.setString(7, (String) cmb_activo.getSelectedItem());
-
-      
-        pst.executeUpdate();
+        classVO.Inventario prod = new classVO.Inventario();
+        prod.setIdproducto(Integer.parseInt(TXT_IDpr.getText()));
+        prod.setNombre(TXT_Nompr.getText());
+        prod.setUnidades(Integer.parseInt(TXT_Unpr.getText()));
+        prod.setPrecio(Integer.parseInt(TXT_Prepr.getText()));
+        prod.setIva(Integer.parseInt(TXT_IVApr.getText()));
+        prod.setDescripcion(TXT_DESCpr.getText());
+        prod.setActivo((String) cmb_activo.getSelectedItem());
         
-        
+        InventarioDAO.actualizarProveedores(prod);
+  
         TXT_IDpr.setText("");
         TXT_Nompr.setText("");
         TXT_Unpr.setText("");
-        TXT_DESCpr.setText("");
         TXT_Prepr.setText("");
         TXT_IVApr.setText("");
-
-    } catch (Exception e) {
-        System.out.print(e.getMessage());
-    }
-    }//GEN-LAST:event_BTN_AddActionPerformed
+        TXT_DESCpr.setText("");
+        
+    }//GEN-LAST:event_BtnActualizarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BTN_Add;
-    private javax.swing.JButton BTN_Buscar;
+    private javax.swing.JButton BTN_Buscarproducto;
+    private javax.swing.JButton BtnActualizar;
     private javax.swing.JTable TBL_Productos;
     private javax.swing.JTextField TXT_DESCpr;
     private javax.swing.JTextField TXT_IDpr;
@@ -372,6 +484,8 @@ public class Inventario extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable tablainventario;
     // End of variables declaration//GEN-END:variables
 }
