@@ -10,6 +10,7 @@ import classDAO.ClienteDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.List;
+import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
 public class Clientes extends javax.swing.JPanel {
@@ -460,10 +461,11 @@ public class Clientes extends javax.swing.JPanel {
         modelo.addColumn("Dirección");
         modelo.addColumn("Ciudad");
         modelo.addColumn("Email");
-        
+        modelo.addColumn("Editar");
+        modelo.addColumn("Borrar");
 
         tablaCliente.setModel(modelo);
-        Object[] arrCliente = new Object[8];
+        Object[] arrCliente = new Object[9];
         for(classVO.Clientes cliente: ClienteDAO.getListClientes()){
             arrCliente[0] = cliente.getId();
             arrCliente[1] = cliente.getNombre();
@@ -473,6 +475,8 @@ public class Clientes extends javax.swing.JPanel {
             arrCliente[5] = cliente.getTelefono();
             arrCliente[6] = cliente.getDireccion();
             arrCliente[7] = cliente.getNit();
+            JButton btn_editar = new JButton("Editar");
+            arrCliente[8] = btn_editar;
            
             modelo.addRow(arrCliente);
         }
