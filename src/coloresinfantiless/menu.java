@@ -18,7 +18,7 @@ public class menu extends javax.swing.JFrame {
      */
     public menu() {
         initComponents();
-        Clientes c = new Clientes();
+        IngresoClientes c = new IngresoClientes();
         c.setSize(600,600);
         c.setLocation(5, 5);
         
